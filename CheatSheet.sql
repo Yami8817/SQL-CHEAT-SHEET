@@ -18,7 +18,11 @@ VALUES
     (060827, "Roy", "Chang", "Lead", 15000, "Software Engineering", "RoyChang@gmail.com"),
     (042580, "Steve", "Brown", "Database Administrator", 9000, "Database Management", "Brown@gmail.com"),
     (098827, "Mario", "Star", "Database Administrator", 9000, "Database Management", "superMario@gmail.com"),
-    (067280, "Tyler", "Smith", "Lead", 12500, "Database Management", "TySmith@gmail.com");
+    (067280, "Tyler", "Smith", "Lead", 12500, "Database Management", "TySmith@gmail.com"),
+    (071234, "Elena", "Garcia", "Analyst", 8500, "Business Intelligence", "ElenaG@gmail.com"),
+    (081345, "James", "White", "Consultant", 11000, "Consulting", "JamesW@gmail.com"),
+    (091456, "Anna", "Taylor", "Tester", 7500, "Quality Assurance", "AnnaT@gmail.com"),
+    (101567, "Chris", "Walker", NULL, NULL, NULL, "ChrisW@gmail.com");
 
 -- BASIC SQL STATEMENTS (DDL and DML)
 
@@ -28,6 +32,7 @@ VALUES
 -- 4. DROP - Deletes a table or database entirely.
 
 -- RETRIEVING DATA FROM THE TABLE WITH SPECIFIC CONDITIONS
+
 
 -- 1. Retrieve employees whose first name starts with "R"
 SELECT * FROM employees
@@ -61,6 +66,26 @@ WHERE position = "Lead" OR salary > 15000;
 SELECT * FROM employees
 WHERE salary BETWEEN 5000 AND 10000;
 
+-- 9. Retrieve employees whose first name has "v" as the fourth character
+SELECT * FROM employees
+WHERE firstName LIKE "___v%";
+
+-- 10. Retrieve employees who work in either "Software Engineering" or "Database Management"
+SELECT * FROM employees
+WHERE department IN ("Software Engineering", "Database Management");
+
+-- 11. Retrieve 5 rows, skipping the first 4 rows
+SELECT * FROM employees
+LIMIT 5 OFFSET 4;
+
+-- 12. Retrieve employees whose position is NULL
+SELECT * FROM employees
+WHERE position IS NULL;
+
+-- 13. Retrieve employees who do not work in the "Business Intelligence" department
+SELECT * FROM employees
+WHERE NOT department = "Business Intelligence";
+
 -- ALTERING TABLE STRUCTURE
 
 -- 1. Add a new column to the table
@@ -70,6 +95,12 @@ ADD COLUMN dateOfEmployment DATE AFTER contact;
 -- 2. Change column name (example: changing "contact" to "email")
 ALTER TABLE employees
 CHANGE COLUMN contact email VARCHAR(100);
+
+-- DELETING DATA IN THE TABLE
+
+-- 1. Delete specific employee data by ID
+DELETE FROM employees
+WHERE employeeID = 101567;
 
 -- UPDATING DATA IN THE TABLE
 
